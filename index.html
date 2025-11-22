@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>分享我的微信号</title>
+
+  <!-- Tailwind CSS (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Inter 字体 -->
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    body { font-family: 'Inter', 'Noto Sans SC', sans-serif; background-color: #f0f2f5; }
+    .wechat-green { background-color: #07c160; color: white; }
+    .wechat-green-hover:hover { background-color: #06ad55; }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4">
+  <!-- 卡片 -->
+  <div id="card" class="bg-white p-8 sm:p-10 rounded-xl shadow-2xl max-w-sm w-full text-center transform transition duration-500 hover:scale-[1.01]">
+    <!-- 微信图标（简化） -->
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mx-auto mb-6 text-green-500" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm3.5 13.5c-.328 0-.64-.131-.87-.36l-1.488-1.488a.5.5 0 01-.13-.37l.142-.71c.218-1.09-.43-2.185-1.52-2.404l-.71-.142a.5.5 0 01-.37.13L8.86 15.13a.855.855 0 01-1.22 0l-2.5-2.5a.855.855 0 010-1.22l1.488-1.488c.23-.23.361-.542.361-.87V8.5c0-.66.54-1.2 1.2-1.2h.71c.22-.044.44-.066.66-.066h.14c.18 0 .34-.05.48-.15l.18-.12c.57-.38.74-1.12.36-1.69a1.2 1.2 0 00-1.69-.36l-2.06 1.38c-.28.18-.62.28-.96.28H7.5C5.57 6.22 4 7.79 4 9.71V11c0 .28.22.5.5.5h2c.28 0 .5-.22.5-.5V9.71c0-.18.15-.33.33-.33h.14c.18 0 .33.15.33.33V11c0 .28.22.5.5.5h2.46c.28 0 .5-.22.5-.5V9.71c0-.18.15-.33.33-.33h.14c.18 0 .33.15.33.33V11c0 .28.22.5.5.5h.71c.28 0 .5-.22.5-.5V8.5c0-.66-.54-1.2-1.2-1.2h-.71c-.22.044-.44.066-.66.066h-.14c-.18 0-.34.05-.48.15l-.18.12c-.57.38-.74 1.12-.36 1.69a1.2 1.2 0 001.69.36l2.06-1.38c.28-.18.62-.28.96-.28h.71c1.93 0 3.5 1.57 3.5 3.5v.79c0 .28-.22.5-.5.5h-2c-.28 0-.5.22-.5.5v.79c0 .18-.15.33-.33.33h-.14c-.18 0-.33-.15-.33-.33V15c0 .28-.22.5-.5.5h-.71c-.28 0-.5.22-.5.5v.79c0 .18.15.33.33.33h.14c.18 0 .33.15.33.33v.79c0 1.93 1.57 3.5 3.5 3.5h.71c.28 0 .5-.22.5-.5V15.5c0-.66-.54-1.2-1.2-1.2h-.71c-.22-.044-.44-.066-.66-.066h-.14c-.18 0-.34-.05-.48-.15l-.18-.12c-.57-.38-.74-1.12-.36-1.69a1.2 1.2 0 001.69-.36l2.06 1.38c.28.18.62.28.96.28h.71c1.93 0 3.5 1.57 3.5 3.5v.79c0 .28-.22.5-.5.5h-2c-.28 0-.5-.22-.5-.5z"/>
+    </svg>
+
+    <h1 class="text-3xl font-bold text-gray-800 mb-2">加我 vx！</h1>
+    <p class="text-gray-500 mb-6">我的微信号是：</p>
+
+    <div class="bg-gray-100 p-4 rounded-lg border border-gray-300 mb-8">
+      <span id="wechat-id" class="text-2xl font-mono font-extrabold text-gray-800 tracking-wider">Eternity_8787</span>
+    </div>
+
+    <button id="copy-button"
+            onclick="copyWeChatID()"
+            class="w-full py-3 rounded-xl wechat-green wechat-green-hover text-lg font-semibold shadow-md transition duration-150 ease-in-out focus:outline-none focus:ring-4 focus:ring-green-300"
+            aria-label="一键复制微信号">
+      一键复制微信号
+    </button>
+
+    <div id="success-message" class="mt-4 p-2 bg-green-100 text-green-700 rounded-lg text-sm hidden" role="status" aria-live="polite">
+      ✅ 已成功复制到剪贴板！请前往微信搜索添加。
+    </div>
+
+    <div class="mt-8 pt-6 border-t border-gray-200 text-left">
+      <h3 class="text-lg font-semibold text-gray-700 mb-3">操作步骤：</h3>
+      <ol class="list-decimal list-inside space-y-2 text-gray-600 text-sm">
+        <li>点击上方的“一键复制微信号”按钮。</li>
+        <li>打开您的微信 App。</li>
+        <li>在搜索栏中选择“添加好友”，将复制的微信号粘贴并搜索（Eternity_8787）。</li>
+      </ol>
+    </div>
+  </div>
+
+  <script>
+    function copyWeChatID() {
+      const wechatID = document.getElementById('wechat-id').textContent.trim();
+      const successMessage = document.getElementById('success-message');
+
+      // 现代 Clipboard API
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(wechatID).then(() => {
+          successMessage.classList.remove('hidden');
+          successMessage.textContent = '✅ 已成功复制到剪贴板！请前往微信搜索添加。';
+          setTimeout(() => successMessage.classList.add('hidden'), 1500);
+        }).catch(err => {
+          // 回退到旧方法
+          fallbackCopy(wechatID, successMessage);
+        });
+      } else {
+        // 回退到旧方法
+        fallbackCopy(wechatID, successMessage);
+      }
+
+      function fallbackCopy(text, msgEl) {
+        const temp = document.createElement('textarea');
+        temp.value = text;
+        // 防止页面滚动
+        temp.style.position = 'fixed';
+        temp.style.left = '-9999px';
+        document.body.appendChild(temp);
+        temp.select();
+        try {
+          document.execCommand('copy');
+          msgEl.classList.remove('hidden');
+          msgEl.textContent = '✅ 已成功复制到剪贴板！请前往微信搜索添加。';
+          setTimeout(() => msgEl.classList.add('hidden'), 1500);
+        } catch (err) {
+          console.error('无法复制文本', err);
+          msgEl.classList.remove('hidden');
+          msgEl.textContent = '❌ 复制失败，请手动长按复制: ' + text;
+        } finally {
+          document.body.removeChild(temp);
+        }
+      }
+    }
+  </script>
+</body>
+</html>
